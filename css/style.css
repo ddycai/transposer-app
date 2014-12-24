@@ -27,12 +27,12 @@
   font-weight: bold;
 }
 
-.button-outer {
-  position:relative;
+.outer {
+  position: relative;
 }
 
-.button-inner {
+.bottom-right {
  position:absolute;
- top:0px;
- right:0px;
+ bottom:5px;
+ right:5px;
 }

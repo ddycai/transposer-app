@@ -1,6 +1,73 @@
+// Chord symbol data
+
+var flats = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "Cb"];
+var sharps = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+var keys = {
+  "C": {
+    index: 0,
+    sharps: 0,
+    flats: 0,
+  },
+  "Db": {
+    index: 1,
+    sharps: 0,
+    flats: 5,
+  },
+  "D": {
+    index: 2,
+    sharps: 2,
+    flats: 0,
+  },
+  "Eb": {
+    index: 3,
+    sharps: 0,
+    flats: 3,
+  },
+  "E": {
+    index: 4,
+    sharps: 4,
+    flats: 0,
+  },
+  "F": {
+    index: 5,
+    sharps: 0,
+    flats: 1,
+  },
+  "Gb": {
+    index: 6,
+    sharps: 0,
+    flats: 6,
+  },
+  "G": {
+    index: 7,
+    sharps: 1,
+    flats: 0,
+  },
+  "Ab": {
+    index: 8,
+    sharps: 0,
+    flats: 4,
+  },
+  "A": {
+    index: 9,
+    sharps: 3,
+    flats: 0,
+  },
+  "Bb": {
+    index: 10,
+    sharps: 0,
+    flats: 2,
+  },
+  "B": {
+    index: 11,
+    sharps: 5,
+    flats: 0,
+  },
+};
+
 // Regex for recognizing chords
 var chordPattern = XRegExp('^(?<chord>[A-G](#|b)?)(?<suffix>(\\(?(M|maj|major|m|min|minor|dim|sus|dom|aug|\\+|-|add)?\\d*\\)?)*)(\\/(?<bass>[A-G](#|b)?))?$');
-var colours;
+var colours = themes[0].colours;
 
 /**
  * Transposes text from one key to another.
@@ -54,9 +121,12 @@ function transpose(text) {
     }
   }
 
-  $('#chordarea').val(rawText);
+  if($("#replace-original").is(":checked")) {
+    $('#chordarea').val(rawText);
+    $('#current-key').val(newKey);
+  }
+
   $('#output').html(newText.replace(/(?:\r\n|\r|\n)/g, '<br />')); 
-  $('#current-key').val(newKey);
 }
 
 /**
@@ -65,11 +135,6 @@ function transpose(text) {
  */
 function chordSpan(text, colour) {
   return "<span class='chord' style='color: #" + colour + "'>" + text + "</span>";
-}
-
-function selectAll() {
-  $('#chordarea').focus();
-  $('#chordarea').select();
 }
 
 /**
@@ -93,9 +158,7 @@ function transposeNote(note, currentKey, newKey) {
 
 }
 
-
 $(document).ready(function() {  
-  colours = themes[0].colours;
 
   $('#print-button').click(function(){
     window.print();

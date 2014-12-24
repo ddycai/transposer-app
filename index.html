@@ -13,6 +13,11 @@
     <div id="wrapper">
       <div id="chord-form">
         <h3>Transposer</h3>
+        <div class="pull-right col-sm-4 outer"> 
+          <div class="bottom-right">
+          <input id="replace-original" type="checkbox" /> Replace original
+          </div>
+        </div>
         <div class="form-group">
           <textarea class="form-control input-sm" id="chordarea" placeholder="Paste your chords here." rows="5"></textarea>
         </div>
@@ -20,33 +25,33 @@
           <label>From</label>
           <select class="form-control" data-toggle="tooltip" data-placement="top" title="Current key signature" id="current-key">
             <option value="auto">(auto)</option>
-            <option value="A">A</option>
-            <option value="Bb">Bb</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="Db">Db</option>
-            <option value="D">D</option>
-            <option value="Eb">Eb</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="Gb">Gb</option>
-            <option value="G">G</option>
-            <option value="Ab">Ab</option>
+            <option value="A">A/F#m</option>
+            <option value="Bb">Bb/Dm</option>
+            <option value="B">B/G#m</option>
+            <option value="C">C/Am</option>
+            <option value="Db">Db/Bbm</option>
+            <option value="D">D/Bm</option>
+            <option value="Eb">Eb/Cm</option>
+            <option value="E">E/C#m</option>
+            <option value="F">F/Dm</option>
+            <option value="Gb">Gb/Ebm</option>
+            <option value="G">G/Em</option>
+            <option value="Ab">Ab/Fm</option>
           </select>
           <label alt="New key">to</label>
           <select class="form-control" data-toggle="tooltip" data-placement="top" title="New key signature" id="new-key">
-            <option value="A">A</option>
-            <option value="Bb">Bb</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="Db">Db</option>
-            <option value="D">D</option>
-            <option value="Eb">Eb</option>
-            <option value="E">E</option>
-            <option value="F">F</option>
-            <option value="Gb">Gb</option>
-            <option value="G">G</option>
-            <option value="Ab">Ab</option>
+            <option value="A">A/F#m</option>
+            <option value="Bb">Bb/Dm</option>
+            <option value="B">B/G#m</option>
+            <option value="C">C/Am</option>
+            <option value="Db">Db/Bbm</option>
+            <option value="D">D/Bm</option>
+            <option value="Eb">Eb/Cm</option>
+            <option value="E">E/C#m</option>
+            <option value="F">F/Dm</option>
+            <option value="Gb">Gb/Ebm</option>
+            <option value="G">G/Em</option>
+            <option value="Ab">Ab/Fm</option>
           </select>
           <button id="transpose-button" class="btn btn-primary">Transpose</button>
           <button id="print-button" class="btn btn-default glyphicon glyphicon-print" title="Print the chords"></button>
@@ -61,6 +66,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/xregexp-min.js"></script>
+    <script src="js/themes.js"></script>
     <script src="js/transposer.min.js"></script>
   </body>
 </html>
