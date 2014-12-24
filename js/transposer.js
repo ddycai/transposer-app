@@ -101,10 +101,6 @@ $(document).ready(function() {
     window.print();
   });
 
-  $('#select-button').click(function(){
-    selectAll();
-  });
-
   $('#transpose-button').click(function(){
     transpose($("#chordarea").val());
   });

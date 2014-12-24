@@ -1,6 +1,5 @@
 //Colour Theme data
 //palettes from colourlovers.com
-//sixth colour is a random addition
 
 var themes = [
   {
