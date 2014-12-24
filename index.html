@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Chord Transposer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Duncan">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+	  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="chord-form">
+        <h3>Transposer</h3>
+        <div class="form-group">
+          <textarea class="form-control input-sm" id="chordarea" placeholder="Paste your chords here." rows="5"></textarea>
+        </div>
+        <div class="form-group form-inline">
+          <label>From</label>
+          <select class="form-control" data-toggle="tooltip" data-placement="top" title="Current key signature" id="current-key">
+            <option value="auto">(auto)</option>
+            <option value="A">A</option>
+            <option value="Bb">Bb</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="Db">Db</option>
+            <option value="D">D</option>
+            <option value="Eb">Eb</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="Gb">Gb</option>
+            <option value="G">G</option>
+            <option value="Ab">Ab</option>
+          </select>
+          <label alt="New key">to</label>
+          <select class="form-control" data-toggle="tooltip" data-placement="top" title="New key signature" id="new-key">
+            <option value="A">A</option>
+            <option value="Bb">Bb</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="Db">Db</option>
+            <option value="D">D</option>
+            <option value="Eb">Eb</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="Gb">Gb</option>
+            <option value="G">G</option>
+            <option value="Ab">Ab</option>
+          </select>
+          <button id="transpose-button" class="btn btn-primary">Transpose</button>
+          <button id="select-button" class="btn btn-default glyphicon glyphicon-align-justify" title="Select all text"></button>
+          <button id="print-button" class="btn btn-default glyphicon glyphicon-print" title="Print the chords"></button>
+          <select class="form-control" title="Select a colour scheme" id="themes">
+          </select>
+        </div>
+      </div>
+      <div id="output"></div>
+    </div>
+
+    <!-- scripts -->
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/xregexp-min.js"></script>
+    <script src="js/themes.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/transposer.js"></script>
+  </body>
+</html>

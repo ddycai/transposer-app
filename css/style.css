@@ -1,0 +1,38 @@
+@media print {
+  #chord-form {
+    display: none;
+  }
+}
+
+#wrapper {
+	margin: auto;
+	padding-left: 50px;
+	width: 650px;
+}
+
+#current-key, #new-key {
+  width: auto;
+}
+
+#chordarea {
+  font-family: monospace;
+}
+
+#output {
+  font-family: monospace;
+  white-space: pre;
+}
+
+.chord {
+  font-weight: bold;
+}
+
+.button-outer {
+  position:relative;
+}
+
+.button-inner {
+ position:absolute;
+ top:0px;
+ right:0px;
+}
