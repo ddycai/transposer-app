@@ -59,8 +59,11 @@ function transpose(text) {
       chord = transposeNote(parts.chord, currentKey, newKey);
       suffix = (parts.suffix === undefined) ? "" : parts.suffix;
       bass = (parts.bass === undefined) ? "" : transposeNote(parts.bass, currentKey, newKey);
-      
-      symbol = chord + suffix + bass;
+     
+      if(bass) 
+        symbol = chord + suffix + "/" + bass;
+      else
+        symbol = chord + suffix;
       colour = colours[(curColour++) % colours.length];
 
       newText += chordSpan(symbol, colour);
@@ -111,6 +114,26 @@ function transposeNote(note, currentKey, newKey) {
     return sharps[(noteInd + sharps.length + distance) % sharps.length];
   }
 
+}
+
+/**
+ * Transposes a single note up or down a certain number of semitones.
+ */
+function transposeNoteSemitone(note, currentKey, distance) {
+  if(!currentKey in keys) {
+    throw "Specified keys do not exist!";
+  }
+
+  var newInd = (keys.indexOf(currentKey) + n + keys.length) % keys.length;
+  var newKey;
+  for(k in keys) {
+    if(k["index"] == newInd) {
+      newKey = k;
+      break;
+    }
+  }
+
+  return transposeNote(note, currentKey, newKey);
 }
 
 $(document).ready(function() {  
