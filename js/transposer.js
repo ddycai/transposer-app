@@ -9,7 +9,7 @@ var keys = {
   "Eb": { index: 3, sharps: 0, flats: 3, },
   "E": { index: 4, sharps: 4, flats: 0, },
   "F": { index: 5, sharps: 0, flats: 1, },
-  "Gb": { index: 6, sharps: 0, flats: 6, },
+  "F#": { index: 6, sharps: 6, flats: 0, },
   "G": { index: 7, sharps: 1, flats: 0, },
   "Ab": { index: 8, sharps: 0, flats: 4, },
   "A": { index: 9, sharps: 3, flats: 0, },
