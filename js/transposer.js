@@ -16,6 +16,7 @@ var keys = {
   "Bb": { index: 10, sharps: 0, flats: 2, },
   "B": { index: 11, sharps: 5, flats: 0,},
 };
+var N_KEYS = 12;
 
 // Regex for recognizing chords
 var chordPattern = XRegExp('^(?<chord>[A-G](#|b)?)(?<suffix>(\\(?(M|maj|major|m|min|minor|dim|sus|dom|aug|\\+|-|add)?\\d*\\)?)*)(\\/(?<bass>[A-G](#|b)?))?$');
@@ -24,16 +25,10 @@ var colours = themes[0].colours;
 /**
  * Transposes text from one key to another.
  */
-function transpose(text) { 
+function transpose(text, currentKey, newKey, semitones) { 
 
   // If empty string don't do anything
   if(!text) return;
-
-  var currentKey = $("#current-key").val();
-  if(currentKey == "auto") {
-    currentKey = null;
-  }
-  var newKey = $("#new-key").val();
 
   // split the text by parts
   var tokens = text.split(/(\s+)/g);
@@ -54,12 +49,19 @@ function transpose(text) {
     // if symbol is chord, transpose it
     } else if(chordPattern.test(tokens[i])) {
       parts = XRegExp.exec(tokens[i], chordPattern);
+      // If current key is unknown, set the first seen chord
+      // to the current key
       if(!currentKey)
         currentKey = parts.chord;
-      chord = transposeNote(parts.chord, currentKey, newKey);
-      suffix = (parts.suffix === undefined) ? "" : parts.suffix;
-      bass = (parts.bass === undefined) ? "" : transposeNote(parts.bass, currentKey, newKey);
-     
+
+      try {
+        chord = transposeNote(parts.chord, currentKey, newKey, semitones);
+        suffix = (parts.suffix === undefined) ? "" : parts.suffix;
+        bass = (parts.bass === undefined) ? "" : transposeNote(parts.bass, currentKey, newKey, semitones);
+      } catch(err) {
+        alert(err);
+        return;
+      }
       if(bass) 
         symbol = chord + suffix + "/" + bass;
       else
@@ -96,44 +98,58 @@ function chordSpan(text, colour) {
 }
 
 /**
- * Transposes a single note from one key to another.
+ * Transposes a single note from one key to another or
+ * up a specified number of semitones.
+ * If semitones is null, transposes to newKey.
+ * If newKey is null, transposes up/down semitones.
+ * If both are null, throws an error.
  */
-function transposeNote(note, currentKey, newKey) {
-  if(!currentKey in keys || !newKey in keys) {
-    throw "Specified keys do not exist!";
+function transposeNote(note, currentKey, newKey, semitones) {
+  if(!(currentKey in keys)) {
+    throw currentKey + " is not a valid key signature!";
   }
 
-  var distance = keys[newKey]["index"] - keys[currentKey]["index"];
+  if(newKey && !(newKey in keys)) {
+    throw newKey + " is not a valid key signature!";
+  }
+
+  console.log(newKey);
+  console.log(semitones);
+
+  if(!newKey && semitones)
+    newKey = transposeKey(currentKey, semitones);
+  else if(newKey && !semitones)
+    semitones = keys[newKey]["index"] - keys[currentKey]["index"];
+  else
+    throw "Either new key or number of semitones must be given."
+
   var noteInd = flats.indexOf(note);
   if(noteInd == -1) noteInd = sharps.indexOf(note);
   if(noteInd == -1) throw "Note (" + note + ") does not exist.";
 
   if(keys[newKey]["flats"] > 0) {
-    return flats[(noteInd + flats.length + distance) % flats.length];
+    return flats[(noteInd + flats.length + semitones) % flats.length];
   } else {
-    return sharps[(noteInd + sharps.length + distance) % sharps.length];
+    return sharps[(noteInd + sharps.length + semitones) % sharps.length];
   }
 
 }
 
 /**
- * Transposes a single note up or down a certain number of semitones.
+ * Finds the key that is a specified number of semitones 
+ * above/below the current key.
  */
-function transposeNoteSemitone(note, currentKey, distance) {
-  if(!currentKey in keys) {
-    throw "Specified keys do not exist!";
+function transposeKey(currentKey, semitones) {
+  if(!(currentKey in keys)) {
+    throw currentKey + " is not a valid key signature!";
   }
-
-  var newInd = (keys.indexOf(currentKey) + n + keys.length) % keys.length;
-  var newKey;
-  for(k in keys) {
-    if(k["index"] == newInd) {
-      newKey = k;
-      break;
+  var newInd = (keys[currentKey]["index"] + semitones + N_KEYS) % N_KEYS;
+  for(var k in keys) {
+    if(keys[k]["index"] == newInd) {
+      return k;
     }
   }
-
-  return transposeNote(note, currentKey, newKey);
+  return null;
 }
 
 $(document).ready(function() {  
@@ -143,7 +159,27 @@ $(document).ready(function() {
   });
 
   $('#transpose-button').click(function(){
-    transpose($("#chordarea").val());
+    var currentKey = $("#current-key").val();
+    if(currentKey == "auto")
+      currentKey = null;
+    var newKey = $("#new-key").val();
+    transpose($("#chordarea").val(), currentKey, newKey, null);
+  });
+
+  $('#transpose-up').click(function(){
+    var currentKey = $("#current-key").val();
+    if(currentKey == "auto")
+      currentKey = null;
+    var semitones = parseInt($("#semitones").val());
+    transpose($("#chordarea").val(), currentKey, null, semitones);
+  });
+
+  $('#transpose-down').click(function(){ 
+    var currentKey = $("#current-key").val();
+    if(currentKey == "auto")
+      currentKey = null;
+    var semitones = -parseInt($("#semitones").val());
+    transpose($("#chordarea").val(), currentKey, null, semitones);
   });
 
   $('[data-toggle="tooltip"]').tooltip();
