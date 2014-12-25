@@ -10,10 +10,6 @@
   }
 }
 
-#current-key, #new-key, #themes {
-  width: auto;
-}
-
 #chordarea {
   font-family: monospace;
 }
