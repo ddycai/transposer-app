@@ -4,10 +4,10 @@
   }
 }
 
-#wrapper {
-	margin: auto;
-	padding-left: 50px;
-	width: 650px;
+@media (min-width: 768px) {
+  .container {
+    max-width: 650px;
+  }
 }
 
 #current-key, #new-key {
