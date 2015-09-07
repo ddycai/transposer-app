@@ -1,37 +1,41 @@
 $(document).ready(function() {  
 
-  $('#print-button').click(function(){
+  $('#print-button').click(function() {
     window.print();
   });
 
-  $('#transpose-button').click(function(){
+  $('#transpose-button').click(function() {
     var currentKey = $("#current-key").val();
     if(currentKey == "auto") {
       currentKey = null;
     }
     var newKey = $("#new-key").val();
-    var newText = transposeToKey($("#chordarea").val(), currentKey, newKey);
+    var newText = transposeToKey($("#chordarea").val(), currentKey, newKey, chordSpanFormatter);
     $('#output').html(newText.replace(/(?:\r\n|\r|\n)/g, '<br />'));
   });
 
-  $('#transpose-up').click(function(){
+  $('#transpose-up').click(function() {
     var currentKey = $("#current-key").val();
     if(currentKey == "auto") {
       currentKey = null;
     }
     var semitones = parseInt($("#semitones").val());
-    var newText = transposeSemitones($("#chordarea").val(), currentKey, semitones);
+    var newText = transposeSemitones($("#chordarea").val(), currentKey, semitones, chordSpanFormatter);
     $('#output').html(newText.replace(/(?:\r\n|\r|\n)/g, '<br />'));
   });
 
-  $('#transpose-down').click(function(){ 
+  $('#transpose-down').click(function() { 
     var currentKey = $("#current-key").val();
     if(currentKey == "auto") {
       currentKey = null;
     }
     var semitones = -parseInt($("#semitones").val());
-    var newText = transposeSemitones($("#chordarea").val(), currentKey, semitones);
+    var newText = transposeSemitones($("#chordarea").val(), currentKey, semitones, chordSpanFormatter);
     $('#output').html(newText.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+  });
+
+  $('#example').click(function() {
+    $('#chordarea').val($('#example-text').val());
   });
 
   $('[data-toggle="tooltip"]').tooltip();
