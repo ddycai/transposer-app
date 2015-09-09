@@ -15,6 +15,8 @@ function selectElement(element) {
   }
 }
 
+var semitonesOffset = 0;
+
 $(document).ready(function() {
   $('#transpose-button').click(function() {
     var currentKey = $("#current-key").val();
@@ -22,8 +24,12 @@ $(document).ready(function() {
       currentKey = null;
     }
     var newKey = $("#new-key").val();
-    var newText = transposeToKey($("#chordarea").val(), currentKey, newKey, chordSpanFormatter);
+    var result = transposeToKey($("#chordarea").val(), currentKey, newKey, chordSpanFormatter);
+    var newText = result[0];
+    newKey = result[1];
     $('#output').html(newText.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+    $('#new-key').val(result[1]);
+    semitonesOffset = result[2];
   });
 
   $('#transpose-up').click(function() {
@@ -31,9 +37,12 @@ $(document).ready(function() {
     if(currentKey == "auto") {
       currentKey = null;
     }
-    var semitones = parseInt($("#semitones").val());
-    var newText = transposeSemitones($("#chordarea").val(), currentKey, semitones, chordSpanFormatter);
+    // var semitones = parseInt($("#semitones").val());
+    semitonesOffset++;
+    var result = transposeSemitones($("#chordarea").val(), currentKey, semitonesOffset, chordSpanFormatter);
+    var newText = result[0];
     $('#output').html(newText.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+    $('#new-key').val(result[1]);
   });
 
   $('#transpose-down').click(function() { 
@@ -41,13 +50,21 @@ $(document).ready(function() {
     if(currentKey == "auto") {
       currentKey = null;
     }
-    var semitones = -parseInt($("#semitones").val());
-    var newText = transposeSemitones($("#chordarea").val(), currentKey, semitones, chordSpanFormatter);
+    // var semitones = -parseInt($("#semitones").val());
+    semitonesOffset--;
+    var result = transposeSemitones($("#chordarea").val(), currentKey, semitonesOffset, chordSpanFormatter);
+    var newText = result[0];
     $('#output').html(newText.replace(/(?:\r\n|\r|\n)/g, '<br />'));
+    $('#new-key').val(result[1]);
   });
 
   $('#example').click(function() {
     $('#chordarea').val($('#example-text').val());
+  });
+
+  $('#reset').click(function() {
+    semitonesOffset = 0;
+    $('#output').html('');
   });
 
   $('[data-toggle="tooltip"]').tooltip();

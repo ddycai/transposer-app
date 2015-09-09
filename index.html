@@ -18,15 +18,18 @@
           <button id="example" class="btn btn-sm btn-default" title="Example chords">
             <span class="glyphicon glyphicon-music"></span>
           </button>
-          <a href="full.html" id="full" class="btn btn-sm btn-default" title="Full mode">
+          <a href="full.html" id="full" class="btn btn-sm btn-default hidden-xs" title="Full mode">
             <span class="glyphicon glyphicon-resize-full"></span>
-          </a>
+          </a> 
+          <button id="reset" class="btn btn-sm btn-default" title="Clear">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
         </div>
       </div>
       <div class="row header form-inline">
         <div class="pull-left">
           <label>Current key</label>
-          <span class="glyphicon glyphicon-question-sign"
+          <span class="glyphicon glyphicon-question-sign hidden-xs"
             data-toggle="tooltip" data-placement="bottom"
             title="(auto) makes the first chord that appears the key signature" aria-hidden="true"></span>
           <select class="form-control input-sm" id="current-key">
@@ -46,17 +49,16 @@
           </select>
         </div>
         <div class="pull-right">
-          <label>Theme</label>
-          <select class="form-control input-sm hidden-xs" data-toggle="tooltip"
-          data-placement="bottom" title="Select a colour scheme" id="themes"></select>
+          <label class="hidden-xs">Theme</label>
+          <select class="form-control input-sm hidden-xs" id="themes"></select>
         </div>
       </div>
       <div class="row print-hide">
         <textarea class="form-control input-sm" id="chordarea" placeholder="Paste your chords here." rows="5"></textarea>
       </div>
       <div class="row form-group form-inline print-hide">
-        <select class="form-control input-sm" data-toggle="tooltip" data-placement="top"
-          title="New key signature" id="new-key">
+        <label>New Key</label>
+        <select class="form-control input-sm" id="new-key">
           <option value="A">A/F#m</option>
           <option value="Bb">Bb/Dm</option>
           <option value="B">B/G#m</option>
@@ -70,24 +72,9 @@
           <option value="G">G/Em</option>
           <option value="Ab">Ab/Fm</option>
         </select>
-        <button id="transpose-button" class="btn btn-sm btn-primary">To New
-        Key</button>  
-        or 
-        <select class="form-control input-sm" data-toggle="tooltip" data-placement="top"
-          title="Number of semitones" id="semitones">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-        </select>
         <div class="btn-group">
+          <button id="transpose-button" class="btn btn-sm btn-primary" title="Transpose to new key
+            signature">Go</button>
           <button id="transpose-up" class="btn btn-sm btn-primary" title="Transpose up">
             <span class="glyphicon glyphicon-arrow-up"></span>
           </button>
@@ -95,7 +82,6 @@
             <span class="glyphicon glyphicon-arrow-down"></span>
           </button>
         </div>
-        semitones
       </div>
       <div class="row output-container">
         <div id="output"></div>
@@ -231,6 +217,6 @@ me - - - -
     <script src="js/xregexp-min.js"></script>
     <script src="js/themes.js"></script>
     <script src="js/transposer-lib.min.js"></script>
-    <script src="js/transposer.js"></script>
+    <script src="js/transposer.min.js"></script>
   </body>
 </html>

@@ -14,17 +14,23 @@ Given some text containing chords, you can transpose it to any other key.
 
 ```javascript
 // Transpose from C major to D major.
-newText = transposeToKey(text, 'C', 'D');
+result = transposeToKey(text, 'C', 'D');
+// The result is an array with the new text at index 0.
+newText = result[0];
+// The new key at index 1.
+newKey = result[1];
+// And the number of semitones transposed at index 2.
+semitones = result[2]:
 ```
 
 You can also transpose up or down any number of semitones.
 
 ```javascript
 // Transpose up 7 semitones.
-newText = transposeSemitones(text, 'C', 7);
+result = transposeSemitones(text, 'C', 7);
 
 // Transpose down 4 semitones.
-newText = transposeSemitones(text, 'C', -4);
+result = transposeSemitones(text, 'C', -4);
 ```
 
 If you don't know the key signature of your text, you can pass in null for the current key and the
@@ -32,10 +38,10 @@ transposer let the first chord it encounters be the key signture.
 
 ```javascript
 // Transpose to C major.
-newText = transposeToKey(text, null, 'C');
+result = transposeToKey(text, null, 'C');
 
 // Transpose down 4 semitones.
-newText = transposeSemitones(text, null, -4);
+result = transposeSemitones(text, null, -4);
 ```
 
 ##The Web App

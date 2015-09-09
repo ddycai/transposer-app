@@ -18,48 +18,29 @@
         <h3>Transposer</h3>
       </div>
       <div class="col-md-6 form-group form-inline">
-        <span id="transpose-key">
-          <select class="form-control input-sm" data-toggle="tooltip" data-placement="bottom" title="New key signature" id="new-key">
-            <option value="A">A/F#m</option>
-            <option value="Bb">Bb/Dm</option>
-            <option value="B">B/G#m</option>
-            <option value="C">C/Am</option>
-            <option value="Db">Db/Bbm</option>
-            <option value="D">D/Bm</option>
-            <option value="Eb">Eb/Cm</option>
-            <option value="E">E/C#m</option>
-            <option value="F">F/Dm</option>
-            <option value="F#">F#/D#m</option>
-            <option value="G">G/Em</option>
-            <option value="Ab">Ab/Fm</option>
-          </select>
-          <button id="transpose-button" class="btn btn-sm btn-primary">To New Key</button>
-        </span>
-        or 
-        <span id="transpose-semitones">
-          <select class="form-control input-sm" data-toggle="tooltip" data-placement="bottom" title="Number of semitones" id="semitones">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-          </select>
-          <div class="btn-group">
-            <button id="transpose-up" class="btn btn-sm btn-primary" title="Transpose up">
-              <span class="glyphicon glyphicon-arrow-up"></span>
-            </button>
-            <button id="transpose-down" class="btn btn-sm btn-primary" title="Transpose down">
-              <span class="glyphicon glyphicon-arrow-down"></span>
-            </button>
-          </div>
-          semitones
-        </span>
+        <select class="form-control input-sm" id="new-key">
+          <option value="A">A/F#m</option>
+          <option value="Bb">Bb/Dm</option>
+          <option value="B">B/G#m</option>
+          <option value="C">C/Am</option>
+          <option value="Db">Db/Bbm</option>
+          <option value="D">D/Bm</option>
+          <option value="Eb">Eb/Cm</option>
+          <option value="E">E/C#m</option>
+          <option value="F">F/Dm</option>
+          <option value="F#">F#/D#m</option>
+          <option value="G">G/Em</option>
+          <option value="Ab">Ab/Fm</option>
+        </select>
+        <div class="btn-group">
+          <button id="transpose-button" class="btn btn-sm btn-primary">Go</button>
+          <button id="transpose-up" class="btn btn-sm btn-primary" title="Transpose up">
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          </button>
+          <button id="transpose-down" class="btn btn-sm btn-primary" title="Transpose down">
+            <span class="glyphicon glyphicon-arrow-down"></span>
+          </button>
+        </div>
       </div>
       <div class="pull-right form-inline">
         <label>Current key</label>
@@ -89,6 +70,9 @@
           <a href="index.html" id="small" class="btn btn-sm btn-default" title="Small mode">
             <span class="glyphicon glyphicon-resize-small"></span>
           </a>
+          <button id="reset" class="btn btn-sm btn-default" title="Clear">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
         </div>
       </div>
     </div>

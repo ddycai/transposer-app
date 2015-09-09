@@ -115,7 +115,7 @@ function transpose(text, currentKey, mapper, formatter) {
         // If current key is unknown, set the first seen chord to the current key.
         if (!currentKey) {
           // If the first chord is minor, find its major equivalent.
-          if (parts.suffix[0] == 'm') {
+          if (parts.suffix == 'm' || parts.suffix == 'min') {
             currentKey = minors[parts.chord];
           } else {
             currentKey = parts.chord;
@@ -141,7 +141,7 @@ function transpose(text, currentKey, mapper, formatter) {
     }
     newText += "\n";
   }
-  return newText;
+  return [newText, newKey, semitonesBetween(currentKey, newKey)];
 }
 
 /**
@@ -151,7 +151,7 @@ function transpose(text, currentKey, mapper, formatter) {
 function transpositionMap(currentKey, newKey) {
   var map = {};
   // Get the number of semitones.
-  semitones = keys[newKey]["index"] - keys[currentKey]["index"];
+  semitones = semitonesBetween(currentKey, newKey);
 
   // Find out whether new key is sharp of flat.
   if (keys[newKey]["flats"] > 0) {
@@ -165,6 +165,16 @@ function transpositionMap(currentKey, newKey) {
     map[sharps[i]] = scale[(i + semitones + N_KEYS) % N_KEYS];
   }
   return map;
+}
+
+function semitonesBetween(a, b) {
+  if (!(a in keys)) {
+    throw a + " is not a valid key signature!";
+  }
+  if (!(b in keys)) {
+    throw b + " is not a valid key signature!";
+  }
+  return keys[b]["index"] - keys[a]["index"];
 }
 
 /**
