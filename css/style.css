@@ -1,17 +1,39 @@
-@media print {
-  #chord-form {
-    display: none;
+@media (min-width: 768px) {
+  .container {
+    max-width: 500px;
+  }
+  .mobile-hide {
+    display: inline;
   }
 }
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 650px;
-  }
+.header {
+  padding: 5px;
+}
+
+.title h3 {
+  margin: 10px 0px 0px 5px;
+}
+
+.demo {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.mobile-hide {
+  display: none;
 }
 
 #chordarea {
   font-family: monospace;
+}
+
+.output-container {
+  padding: 0px 15px 0px 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 #output {
@@ -28,7 +50,7 @@
 }
 
 .bottom-right {
- position:absolute;
- bottom:0px;
- right:0px;
+  position:absolute;
+  bottom:0px;
+  right:0px;
 }

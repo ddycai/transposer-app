@@ -1,0 +1,52 @@
+/* Clear all the margins and padding. */
+html, body, .container-fluid, .row {
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+}
+
+textarea.form-control {
+  height: 100%;
+}
+
+.form-group {
+  margin: 0px;
+}
+
+.title {
+  width: 130px;
+}
+
+.title h3 {
+  margin: 0px;
+}
+
+.header {
+  height: 40px;
+  padding: 10px;
+}
+
+.row-content {
+  height: calc(100% - 40px);
+}
+
+.fill-height {
+  height: 100%;
+  padding: 10px;
+}
+
+#chordarea {
+  font-family: monospace;
+  height: 100%;
+}
+
+#output {
+  font-family: monospace;
+  white-space: pre;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.chord {
+  font-weight: bold;
+}

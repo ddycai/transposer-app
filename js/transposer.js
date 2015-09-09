@@ -1,9 +1,21 @@
-$(document).ready(function() {  
+/**
+ * From http://stackoverflow.com/a/9976077
+ */
+function selectElement(element) {
+  if (window.getSelection) {
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      var range = document.createRange();
+      range.selectNodeContents(element);
+      sel.addRange(range);
+  } else if (document.selection) {
+      var textRange = document.body.createTextRange();
+      textRange.moveToElementText(element);
+      textRange.select();
+  }
+}
 
-  $('#print-button').click(function() {
-    window.print();
-  });
-
+$(document).ready(function() {
   $('#transpose-button').click(function() {
     var currentKey = $("#current-key").val();
     if(currentKey == "auto") {
@@ -46,5 +58,9 @@ $(document).ready(function() {
 	$('#themes').change(function() {
 		colours = themes[Number($('#themes option:selected').val())].colours;
 	});
+
+  $('#output').click(function() {
+    selectElement($('#output')[0]);
+  });
 });
 

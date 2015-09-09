@@ -7,30 +7,19 @@
     <meta name="description" content="">
     <meta name="author" content="Duncan">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+	  <link rel="stylesheet" type="text/css" href="css/full.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
   </head>
   <body>
-    <div class="container">
-      <div class="row form-inline">
-        <div class="title pull-left"><h3>Transposer</h3></div>
-        <div class="demo pull-right btn-group">
-          <button id="example" class="btn btn-sm btn-default" title="Example chords">
-            <span class="glyphicon glyphicon-music"></span>
-          </button>
-          <a href="full.html" id="full" class="btn btn-sm btn-default" title="Full mode">
-            <span class="glyphicon glyphicon-resize-full"></span>
-          </a>
-        </div>
+  <div class="container-fluid">
+    <!-- Top header controls -->
+    <div class="row header print-hide">
+      <div class="col-md-2 title form-group form-inline">
+        <h3>Transposer</h3>
       </div>
-      <div class="row header form-inline">
-        <div class="pull-left">
-          <label>Current key</label>
-          <span class="glyphicon glyphicon-question-sign"
-            data-toggle="tooltip" data-placement="bottom"
-            title="(auto) makes the first chord that appears the key signature" aria-hidden="true"></span>
-          <select class="form-control input-sm" id="current-key">
-            <option value="auto">(auto)</option>
+      <div class="col-md-6 form-group form-inline">
+        <span id="transpose-key">
+          <select class="form-control input-sm" data-toggle="tooltip" data-placement="bottom" title="New key signature" id="new-key">
             <option value="A">A/F#m</option>
             <option value="Bb">Bb/Dm</option>
             <option value="B">B/G#m</option>
@@ -44,19 +33,41 @@
             <option value="G">G/Em</option>
             <option value="Ab">Ab/Fm</option>
           </select>
-        </div>
-        <div class="pull-right">
-          <label>Theme</label>
-          <select class="form-control input-sm hidden-xs" data-toggle="tooltip"
-          data-placement="bottom" title="Select a colour scheme" id="themes"></select>
-        </div>
+          <button id="transpose-button" class="btn btn-sm btn-primary">To New Key</button>
+        </span>
+        or 
+        <span id="transpose-semitones">
+          <select class="form-control input-sm" data-toggle="tooltip" data-placement="bottom" title="Number of semitones" id="semitones">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+          </select>
+          <div class="btn-group">
+            <button id="transpose-up" class="btn btn-sm btn-primary" title="Transpose up">
+              <span class="glyphicon glyphicon-arrow-up"></span>
+            </button>
+            <button id="transpose-down" class="btn btn-sm btn-primary" title="Transpose down">
+              <span class="glyphicon glyphicon-arrow-down"></span>
+            </button>
+          </div>
+          semitones
+        </span>
       </div>
-      <div class="row print-hide">
-        <textarea class="form-control input-sm" id="chordarea" placeholder="Paste your chords here." rows="5"></textarea>
-      </div>
-      <div class="row form-group form-inline print-hide">
-        <select class="form-control input-sm" data-toggle="tooltip" data-placement="top"
-          title="New key signature" id="new-key">
+      <div class="pull-right form-inline">
+        <label>Current key</label>
+        <span class="glyphicon glyphicon-question-sign"
+          data-toggle="tooltip" data-placement="bottom"
+          title="(auto) makes the first chord that appears the key signature" aria-hidden="true"></span>
+        <select class="input-sm form-control" id="current-key">
+          <option value="auto">(auto)</option>
           <option value="A">A/F#m</option>
           <option value="Bb">Bb/Dm</option>
           <option value="B">B/G#m</option>
@@ -70,39 +81,28 @@
           <option value="G">G/Em</option>
           <option value="Ab">Ab/Fm</option>
         </select>
-        <button id="transpose-button" class="btn btn-sm btn-primary">To New
-        Key</button>  
-        or 
-        <select class="form-control input-sm" data-toggle="tooltip" data-placement="top"
-          title="Number of semitones" id="semitones">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-          <option value="7">7</option>
-          <option value="8">8</option>
-          <option value="9">9</option>
-          <option value="10">10</option>
-          <option value="11">11</option>
-        </select>
+        <select class="input-sm form-control hidden-xs" data-toggle="tooltip" data-placement="bottom" title="Select a colour scheme" id="themes"></select>
         <div class="btn-group">
-          <button id="transpose-up" class="btn btn-sm btn-primary" title="Transpose up">
-            <span class="glyphicon glyphicon-arrow-up"></span>
+          <button id="example" class="btn btn-sm btn-default" title="Example chords">
+            <span class="glyphicon glyphicon-music"></span>
           </button>
-          <button id="transpose-down" class="btn btn-sm btn-primary" title="Transpose down">
-            <span class="glyphicon glyphicon-arrow-down"></span>
-          </button>
+          <a href="index.html" id="small" class="btn btn-sm btn-default" title="Small mode">
+            <span class="glyphicon glyphicon-resize-small"></span>
+          </a>
         </div>
-        semitones
       </div>
-      <div class="row output-container">
+    </div>
+    <!-- Chord input text area -->
+    <div class="row row-content">
+      <div class="form-group col-md-6 fill-height print-hide">
+        <textarea class="form-control" id="chordarea" placeholder="Paste your chords here."></textarea>
+      </div>
+      <div class="col-md-6 fill-height">
         <div id="output"></div>
       </div>
     </div>
-
-    <textarea id="example-text" class="print-hide hidden">
+  </div>
+    <textarea id="example-text" class="hidden">
          Eb           F/Eb
 And I am telling you 
         Dm7   Gm7
@@ -224,7 +224,6 @@ You're gonna love_______
 Ab6  Cmaj9  Eb/F  Bb
 me - - - -
     </textarea>
-
     <!-- scripts -->
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>

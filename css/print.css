@@ -1,0 +1,16 @@
+.chord {
+  -webkit-print-color-adjust: exact;
+}
+
+.print-hide {
+	display: none;
+}
+
+#output {
+  font-family: monospace;
+  white-space: pre;
+}
+
+.chord {
+  font-weight: bold;
+}
