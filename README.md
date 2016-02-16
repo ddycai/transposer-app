@@ -7,41 +7,51 @@ identified and transposed.
 
 ##The Library
 
-The library depends on XRegExp regex library. To use it, include `xregexp-min.js` and
+The library depends on the XRegExp regex library. To use it, include `xregexp-min.js` and
 `transposer-lib.min.js`.
 
 Given some text containing chords, you can transpose it to any other key.
 
 ```javascript
 // Transpose from C major to D major.
-result = transposeToKey(text, 'C', 'D');
-// The result is an array with the new text at index 0.
-newText = result[0];
-// The new key at index 1.
-newKey = result[1];
-// And the number of semitones transposed at index 2.
-semitones = result[2]:
+result = transposeToKey(text, 'D', {currentKey: 'C'});
+// The result is an object containing the new text,
+newText = result.text;
+// the new key,
+newKey = result.key;
+// and the number of semitones transposed.
+semitones = result.semitones:
 ```
 
 You can also transpose up or down any number of semitones.
 
 ```javascript
-// Transpose up 7 semitones.
-result = transposeSemitones(text, 'C', 7);
+// Transpose up 7 semitones from C major.
+result = transposeSemitones(text, 7, {currentKey: 'C'});
 
-// Transpose down 4 semitones.
-result = transposeSemitones(text, 'C', -4);
+// Transpose down 4 semitones from C major.
+result = transposeSemitones(text, -4, {currentKey: 'C'});
 ```
 
-If you don't know the key signature of your text, you can pass in null for the current key and the
-transposer let the first chord it encounters be the key signture.
+You can choose not to pass in the current key to let the first chord of your text be the key signature.
 
 ```javascript
 // Transpose to C major.
-result = transposeToKey(text, null, 'C');
+result = transposeToKey(text, 'C');
 
 // Transpose down 4 semitones.
-result = transposeSemitones(text, null, -4);
+result = transposeSemitones(tegixt, -4);
+```
+
+You can pass in a formatter to format the chord symbols. A formatter takes the chord symbol and an id and returns the formatted chord. The id is unique for each chord. For example, to make chord symbols bold:
+
+```javascript
+// Transpose to C major but bold the chords.
+result = transposeToKey(text, 'Bb', {
+    formatter: function(sym, id) {
+      return '<b>' + sym + '</b>';
+    }
+});
 ```
 
 ##The Web App
