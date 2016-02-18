@@ -40,7 +40,7 @@ You can choose not to pass in the current key to let the first chord of your tex
 result = transposeToKey(text, 'C');
 
 // Transpose down 4 semitones.
-result = transposeSemitones(tegixt, -4);
+result = transposeSemitones(text, -4);
 ```
 
 You can pass in a formatter to format the chord symbols. A formatter takes the chord symbol and an id and returns the formatted chord. The id is unique for each chord. For example, to make chord symbols bold:
