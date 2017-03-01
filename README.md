@@ -1,62 +1,31 @@
 Chord Transposer
 ========
 
-A Javascript library and a web app that transposes text containing chords from one key to another.
-The text is allowed to containing non-chord text (for example, lyrics). Only chords will be
-identified and transposed.
+A web app that transposes text containing chords from one key to another with
+colorful highlighting.
 
-##The Library
+The text is allowed to containing non-chord text (for example, lyrics). Only
+chords will be identified and transposed.
 
-The library depends on the XRegExp regex library. To use it, include `xregexp-min.js` and
-`transposer-lib.min.js`.
+## Building the Code
 
-Given some text containing chords, you can transpose it to any other key.
+The code is bundled using webpack. To install the required dependencies, make
+sure you have `npm` and `webpack` installed and run:
 
-```javascript
-// Transpose from C major to D major.
-result = transposeToKey(text, 'D', {currentKey: 'C'});
-// The result is an object containing the new text,
-newText = result.text;
-// the new key,
-newKey = result.key;
-// and the number of semitones transposed.
-semitones = result.semitones:
+```
+$ npm install
 ```
 
-You can also transpose up or down any number of semitones.
+Then build the `bundle.js` with webpack:
 
-```javascript
-// Transpose up 7 semitones from C major.
-result = transposeSemitones(text, 7, {currentKey: 'C'});
-
-// Transpose down 4 semitones from C major.
-result = transposeSemitones(text, -4, {currentKey: 'C'});
+```
+$ webpack
 ```
 
-You can choose not to pass in the current key to let the first chord of your text be the key signature.
+You can find the color schemes in `js/themes.js`.
 
-```javascript
-// Transpose to C major.
-result = transposeToKey(text, 'C');
+See the project website to try it out!
 
-// Transpose down 4 semitones.
-result = transposeSemitones(text, -4);
-```
+The library used for transposing chords is
+[chord-transposer](https://github.com/frigidrain/chord-transposer).
 
-You can pass in a formatter to format the chord symbols. A formatter takes the chord symbol and an id and returns the formatted chord. The id is unique for each chord. For example, to make chord symbols bold:
-
-```javascript
-// Transpose to C major but bold the chords.
-result = transposeToKey(text, 'Bb', {
-    formatter: function(sym, id) {
-      return '<b>' + sym + '</b>';
-    }
-});
-```
-
-##The Web App
-
-The web app makes use of the transposer library to provide a UI for transposing chords. It is
-written using jQuery and Twitter Bootstrap.
-
-See the project website for a demo.

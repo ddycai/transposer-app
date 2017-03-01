@@ -34,6 +34,7 @@
             title="(auto) makes the first chord that appears the key signature" aria-hidden="true"></span>
           <select class="form-control input-sm" id="current-key">
             <option value="auto">(auto)</option>
+            <!--
             <option value="A">A/F#m</option>
             <option value="Bb">Bb/Dm</option>
             <option value="B">B/G#m</option>
@@ -43,9 +44,10 @@
             <option value="Eb">Eb/Cm</option>
             <option value="E">E/C#m</option>
             <option value="F">F/Dm</option>
-            <option value="F#">F#/D#m</option>
+            <option value="Gb">Gb/Ebm</option>
             <option value="G">G/Em</option>
             <option value="Ab">Ab/Fm</option>
+          -->
           </select>
         </div>
         <div class="pull-right">
@@ -59,6 +61,7 @@
       <div class="row transposer-controls form-group form-inline print-hide">
         <label>New Key</label>
         <select class="form-control input-sm" id="new-key">
+          <!--
           <option value="A">A/F#m</option>
           <option value="Bb">Bb/Dm</option>
           <option value="B">B/G#m</option>
@@ -68,9 +71,10 @@
           <option value="Eb">Eb/Cm</option>
           <option value="E">E/C#m</option>
           <option value="F">F/Dm</option>
-          <option value="F#">F#/D#m</option>
+          <option value="Gb">Gb/Ebm</option>
           <option value="G">G/Em</option>
           <option value="Ab">Ab/Fm</option>
+          -->
         </select>
         <div class="btn-group">
           <button id="transpose-button" class="btn btn-sm btn-primary" title="Transpose to new key
@@ -210,13 +214,6 @@ You're gonna love_______
 Ab6  Cmaj9  Eb/F  Bb
 me - - - -
     </textarea>
-
-    <!-- scripts -->
-    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="js/xregexp-min.js"></script>
-    <script src="js/themes.js"></script>
-    <script src="js/transposer.js"></script>
-    <script src="js/transposer-ui.js"></script>
+    <script src="bundle.js"></script>
   </body>
 </html>

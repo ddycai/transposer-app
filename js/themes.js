@@ -1,7 +1,7 @@
 //Colour Theme data
 //palettes from colourlovers.com
 
-var themes = [
+module.exports = [
   {
     name: "cheer up",
     colours: ["556270", "4ECDC4", "C7F464", "FF6B6B", "C44D58", "FFA661"]
